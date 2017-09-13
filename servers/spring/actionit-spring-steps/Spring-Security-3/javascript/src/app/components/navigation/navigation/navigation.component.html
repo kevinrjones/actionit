@@ -1,0 +1,25 @@
+<div id="navTop">
+    <ul class="navList">
+        <li class="timeListItems">
+            <a routerLink="/all"><aiTimeItem [timeItem]="{title: 'All', limit: 0}"></aiTimeItem></a>
+        </li>
+        <li class="timeListItems">
+          <a routerLink="/today"><aiTimeItem [timeItem]="{title: 'Today', limit: 1}"></aiTimeItem></a>
+        </li>
+        <li class="timeListItems">
+          <a routerLink="/timeList"><aiTimeItem [timeItem]="{title: 'Next 7 Days', limit: 7}"></aiTimeItem></a>
+        </li>
+    </ul>
+</div>
+<div id="navMenu">
+    tabs for projects, labels, filters
+</div>
+<div id="navProjectList">
+    <ul class="projectList">
+        <li class="clickable projectListItems" *ngFor="let project of projects" >
+            <aiProjectNavItem [project]="project">
+            </aiProjectNavItem>
+        </li>
+        <li class="clickable projectListItems">+ Add</li>
+    </ul>
+</div>

@@ -1,0 +1,60 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="registrationForm" novalidate>
+    <div class="modal-body">
+      <div class="form-group" [ngClass]="{'has-danger': emailIsInvalid()}">
+        <input class="form-control" type="text" [formControl]="email" placeholder="Email" formControlName='email'>
+        <span *ngIf="emailIsInvalid()">
+            <span class="form-text form-control-feedback" *ngIf="email.errors.required">Email is required</span>
+        <span class="form-text form-control-feedback" *ngIf="email.errors.email && !email.errors.required">This does not look an email</span>
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched)}">
+        <input class="form-control" type="text" [formControl]="firstName" placeholder="First Name" formControlName='firstName'>
+        <span *ngIf="(firstName.dirty || firstName.touched) && firstName.invalid">
+            <span class="form-text form-control-feedback" *ngIf="firstName.errors.required">First name is required</span>
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched)}">
+        <input class="form-control" type="text" [formControl]="lastName" placeholder="Last Name" formControlName='lastName'>
+        <span *ngIf="(lastName.dirty || lastName.touched) && lastName.invalid">
+              <span class="form-text form-control-feedback" *ngIf="lastName.errors.required">Last name is required</span>
+        </span>
+      </div>
+      <div formGroupName="passwordGroup" [ngClass]="{'has-danger': passwordGroup.errors}">
+        <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched)}">
+          <input class="form-control" type="password" [formControl]="password" placeholder="Password" formControlName='password'>
+          <span *ngIf="(password.dirty || password.touched) && password.invalid">
+              <span class="form-text form-control-feedback" *ngIf="password.errors?.required">Password is required</span>
+          </span>
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)}">
+          <input class="form-control" type="password" [formControl]="repeatPassword" placeholder="Confirm Password" formControlName='repeatPassword'>
+          <span *ngIf="((repeatPassword.dirty || repeatPassword.touched) && repeatPassword.invalid)
+          || (passwordGroup.errors?.comparison)">
+            <span class="form-text form-control-feedback" *ngIf="repeatPassword.errors?.required">Repeat password is required</span>
+            <span class="form-text form-control-feedback" *ngIf="passwordGroup.errors?.comparison && !(repeatPassword.errors?.required)">Passwords must match</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="register()" (keyup.enter)="register()" [disabled]="isInvalidOrWaiting()">Register</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close({'Save': false})" [disabled]="isWaiting">Cancel</button>
+    </div>
+  </form>
+</div>
+<div [hidden]="!isError" class="alert alert-danger">
+  {{message}}
+</div>
+<!-- Debugging purposes only -->
+<!-- <br>Dirty: {{ registrationForm.dirty }}
+<br>Touched: {{ registrationForm.touched }}
+<br>Valid: {{ registrationForm.valid }}
+<br>Value: {{ registrationForm.value | json }}
+<br>Value {{passwordGroup.errors && passwordGroup.errors.comparison }} -->

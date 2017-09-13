@@ -1,0 +1,20 @@
+.navList {
+  list-style-type: none;
+  padding: 10px 0 4px;
+  .timeListItems {
+    padding: 10px 0 4px;
+    a {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+
+.projectList {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0 4px;
+  .projectListItems {
+    padding: 10px 0 4px;
+  }
+}

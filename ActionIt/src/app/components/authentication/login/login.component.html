@@ -1,0 +1,43 @@
+<div>
+  <!-- <div rskHighlight="Blue">Hello</div> -->
+  <div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #loginForm="ngForm" novalidate>
+    <div class="modal-body">
+      <div class="form-group" [ngClass]="{'has-danger': emailv.invalid 
+      && (emailv.dirty || emailv.touched) 
+      && (emailv.errors.required || emailv.errors.email)}">
+        <input class="input form-control form-control-danger" type="text" name="email" [(ngModel)]="email" email required placeholder="Email"
+          #emailv="ngModel">
+        <span *ngIf="(emailv.dirty || emailv.touched) && emailv.invalid">
+            <span class="form-text form-control-feedback" *ngIf="emailv.errors.required">Email is reqired</span>
+            <span class="form-text form-control-feedback" *ngIf="emailv.errors.email && !emailv.errors.required">This does not look an email</span>
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': passwordv.invalid && (passwordv.dirty || passwordv.touched)}">
+        <input class="input form-control" type="password" name="password" [(ngModel)]="password" required placeholder="Password"
+          #passwordv="ngModel">
+          <span *ngIf="(passwordv.dirty || passwordv.touched) && passwordv.invalid">
+              <span class="form-text form-control-feedback" *ngIf="passwordv.errors.required">Password is reqired</span>
+          </span>
+        </div>
+    </div>
+  </form>
+  <div class="modal-footer">
+    <!-- passing loginForm to the login method purely for demo purposes -->
+    <button type="submit" class="btn btn-primary" (click)="login(loginForm)" (keyup.enter)="login(loginForm)" [disabled]="isWaiting || !loginForm.valid">Login</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close({'Save': false})" [disabled]="isWaiting">Cancel</button>                                                             
+  </div>
+  <div [hidden]="!isError" class="alert alert-danger">
+    {{message}}
+  </div>
+</div>
+<!-- Debugging purposes only -->
+<!-- <br>Dirty: {{ loginForm.dirty }}
+<br>Touched: {{ loginForm.touched }}
+<br>Valid: {{ loginForm.valid }}
+<br>Value: {{ loginForm.value | json }} -->

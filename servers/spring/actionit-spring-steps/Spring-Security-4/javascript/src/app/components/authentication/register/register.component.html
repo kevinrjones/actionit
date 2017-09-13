@@ -1,0 +1,56 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <input class="input" type="text" name="email" [(ngModel)]="email" required email placeholder="Email" #emailv="ngModel">
+    </p>
+    <div *ngIf="emailv.invalid && (emailv.dirty || emailv.touched) && (emailv.errors.required || emailv.errors.email)" class="alert alert-danger">
+      <div *ngIf="emailv.errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="emailv.errors.email && email.length != 0">
+        Email is invalid.
+      </div>
+    </div>
+    <p>
+      <input class="input" type="text" name="firstName" [(ngModel)]="firstName" required placeholder="First Name" #firstNamev="ngModel">
+    </p>
+    <div *ngIf="firstNamev.errors.required && (firstNamev.dirty || firstNamev.touched)" class="alert alert-danger">
+      First Name is required.
+    </div>
+    <p>
+      <input class="input" type="text" name="LastName" [(ngModel)]="lastName" required placeholder="Last Name" #lastNamev="ngModel">
+    </p>
+    <div *ngIf="lastNamev.invalid && (lastNamev.dirty || lastNamev.touched)" class="alert alert-danger">
+      <div *ngIf="lastNamev.errors.required">
+        Last Name is required.
+      </div>
+    </div>
+    <p>
+      <input class="input" type="password" name="password" [(ngModel)]="password" required placeholder="Password" #passwordv="ngModel">
+    </p>
+    <div *ngIf="passwordv.invalid && (passwordv.dirty || passwordv.touched)" class="alert alert-danger">
+      <div *ngIf="passwordv.errors.required">
+        Password is required.
+      </div>
+    </div>
+    <p>
+      <input class="input" type="password" name="repeatPassword" validateEqual="password" [(ngModel)]="repeatPassword" placeholder="Repeat Password" #confirmPassword="ngModel">
+    </p>
+    <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+        Password mismatch
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="register()" (keyup.enter)="login()" [disabled]="isWaiting">Register</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close({'Save': false})" [disabled]="isWaiting">Cancel</button>
+  </div>
+</div>
+<div [hidden]="!isError" class="alert alert-danger">
+  {{message}}
+</div>

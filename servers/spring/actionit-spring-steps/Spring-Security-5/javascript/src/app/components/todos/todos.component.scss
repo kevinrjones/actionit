@@ -1,0 +1,17 @@
+.lined {
+  border-bottom: 1px solid lightgray;
+}
+
+li {
+  &.task_item {
+    padding-top: 15px;
+  }
+}
+
+.todolist {
+  list-style-type: none;
+}
+
+.overdue {
+  color: firebrick;
+}

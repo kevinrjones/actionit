@@ -1,0 +1,109 @@
+buildscript {
+	ext {
+		kotlinVersion = '1.1.3-2'
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+        classpath 'com.h2database:h2:1.4.191'
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.2.0'
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.4.2'
+	}
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'org.unbroken-dome.test-sets'
+apply plugin: 'org.flywaydb.flyway'
+
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+	kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	compile('org.springframework.boot:spring-boot-starter-jersey')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	compile('org.springframework.boot:spring-boot-devtools')
+//	compile('org.flywaydb:flyway-core')
+	compile 'commons-logging:commons-logging:1.2'
+//	compile 'javax.validation:validation-api:1.1.0.Final'
+//	compile 'org.hibernate:hibernate-validator:5.4.1.Final'
+
+
+	runtime('com.h2database:h2')
+	runtime('mysql:mysql-connector-java')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+}
+
+def mysqlUser = ""
+def mysqlPassword = ""
+
+if(project.hasProperty('mysql_user')) {
+	mysqlUser = project.mysql_user
+} else {
+	logger.error("mysql_user not set. Please add a USER_HOME/.gradle/gradle.properties and add a mysql_user value")
+}
+
+if(project.hasProperty('actionit_password')) {
+	mysqlPassword = project.actionit_password
+} else {
+	mysqlPassword = System.getenv("action_password")
+}
+
+
+task migrateProduction {
+    group = "flyway"
+    description = "Run migration scripts for production"
+    doFirst {
+        flyway {
+            url = 'jdbc:mysql://localhost:3306/actionit?useSSL=false'
+            user = mysqlUser
+            password = mysqlPassword
+            schemas = ['actionit']
+            locations = ["filesystem:${projectDir}/migrations/common", "filesystem:${projectDir}/migrations/mysql"]
+            sqlMigrationPrefix = ""
+            baselineOnMigrate = true
+            outOfOrder = true
+        }
+    }
+}
+
+
+
+migrateProduction.finalizedBy flywayMigrate
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.0.1'
+}

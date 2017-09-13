@@ -1,0 +1,19 @@
+
+  .counter {
+    font-size: x-small;
+  }
+  .isOverDue {
+    color: red;
+  }
+  .current {
+    font-weight: bold;
+  }
+
+  .timeListItems {
+    padding: 10px 0 4px;
+
+    a {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
