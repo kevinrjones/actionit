@@ -9,7 +9,7 @@ import { ToDo, Priority } from './todo';
 export class TodoComponent {
 
   public editable = false;
-  @Input() private todo: ToDo;
+  @Input() todo: ToDo;
 
   public toggleEditable(): void {
     this.editable = !this.editable;

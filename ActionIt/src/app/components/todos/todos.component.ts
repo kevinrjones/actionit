@@ -30,7 +30,7 @@ export class TodosComponent implements OnInit {
   }
 
   public overdue(): IToDo[] {
-    let filtered = _.chain(this.todos)
+    const filtered = _.chain(this.todos)
       .filter((todo) => {
         return todo.dueDate.isBefore(moment().add(this.routeData.days), 'day');
       })
@@ -39,14 +39,14 @@ export class TodosComponent implements OnInit {
   }
 
   public today(): IToDo[] {
-    let filtered = _.filter(this.todos, (todo) => {
+    const filtered = _.filter(this.todos, (todo) => {
       return todo.dueDate.isSame(moment(), 'day');
     });
     return filtered;
   }
 
   public inDateRange(): IToDo[] {
-    let filtered = _.chain(this.todos).filter((todo) => {
+    const filtered = _.chain(this.todos).filter((todo) => {
       if (this.routeData.days === 0) {
         return todo.dueDate.isAfter(moment(), 'day');
       }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavigationProjectItemComponent } from './navigation-project-item.component';
+import { SimpleMessageService } from '../../../shared/message.service';
 
 describe('NavigationProjectItemComponent', () => {
   let component: NavigationProjectItemComponent;
@@ -8,7 +9,8 @@ describe('NavigationProjectItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationProjectItemComponent ]
+      declarations: [ NavigationProjectItemComponent ],
+      providers: [SimpleMessageService]
     })
     .compileComponents();
   }));

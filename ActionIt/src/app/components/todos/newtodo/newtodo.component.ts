@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToDoService } from '../index'
+import { ToDoService } from '../index';
 
 @Component({
     selector: 'ngbd-modal-content',
@@ -16,7 +16,7 @@ export class NewtodoComponent {
 
     public addTodo() {
         if (this.title && this.title !== '') {
-            this.todoService.addTodo(this.title)
+            this.todoService.addTodo(this.title);
             this.activeModal.close({ Save: true, Title: this.title });
         }
     }

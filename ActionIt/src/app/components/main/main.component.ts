@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NewtodoComponent } from '../todos/newtodo/newtodo.component';
 import { SimpleMessageService } from '../../shared/message.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { AuthenticationService } from '../authentication';
 
 @Component({
@@ -23,7 +23,7 @@ export class MainComponent implements OnDestroy {
     }
 
     public showAddToDoDialog() {
-        let modalRef: NgbModalRef = this._modalService.open(NewtodoComponent);
+        const modalRef: NgbModalRef = this._modalService.open(NewtodoComponent);
         modalRef.result.then((res) => {
             console.log(res);
         }, () => {}); // empty 'reject' function - workaround for https://github.com/shlomiassaf/angular2-modal/issues/188
