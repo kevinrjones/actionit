@@ -21,7 +21,7 @@ export class AuthenticationService implements CanActivate {
     @Inject(AppConfig) config: ProjectConfig,
     private router: Router,
     private storage: LocalStorageService) {
-    this.url = config.authenticateUrl;
+    this.url = `${config.rootResourceUrl}${config.authenticateUrl}`;
     this.logoutUrl = config.logoutUrl;
   }
 

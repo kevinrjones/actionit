@@ -15,14 +15,14 @@ export class HomeComponent implements OnInit {
     }
 
     public showLoginDialog() {
-        let modalRef: NgbModalRef = this._modalService.open(LoginComponent, { 'windowClass': 'login-modal' });
+        const modalRef: NgbModalRef = this._modalService.open(LoginComponent, { 'windowClass': 'login-modal' });
         modalRef.result.then((res) => {
             console.log(res);
         }, () => { }); // empty 'reject' function - workaround for https://github.com/shlomiassaf/angular2-modal/issues/188
     }
 
     public showRegisterDialog() {
-        let modalRef: NgbModalRef = this._modalService.open(RegisterComponent, { 'windowClass': 'login-modal' });
+        const modalRef: NgbModalRef = this._modalService.open(RegisterComponent, { 'windowClass': 'login-modal' });
         modalRef.result.then((res) => {
             console.log(res);
         }, () => { }); // empty 'reject' function - workaround for https://github.com/shlomiassaf/angular2-modal/issues/188

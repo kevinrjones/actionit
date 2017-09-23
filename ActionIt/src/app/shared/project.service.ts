@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -18,7 +18,7 @@ export class ProjectService {
     }
 
     public getProjects(): Observable<IProject[]> {
-        return this._http.get<IProject[]>(this.url)
+        return this._http.get<IProject[]>(this.url, { withCredentials: true })
             .map((resp: IProject[]) => _.map(resp, (item) => new Project(item)))
             .do((data) => console.log('ALL: ' + JSON.stringify(data)))
             .catch(this.handleError);
