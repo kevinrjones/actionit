@@ -1,12 +1,12 @@
 
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from "rxjs/Observable";
-import { Router } from "@angular/router";
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { LocalStorageService } from "../storage.service";
+import { LocalStorageService } from '../storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -25,13 +25,12 @@ export class AuthInterceptor implements HttpInterceptor {
             // })
             .catch(response => {
                 if (response instanceof HttpErrorResponse) {
-                    if (response.status == 401) {
-                        this.router.navigate(['home'])
-                        this.storage.removeItem("user")
+                    if (response.status === 401) {
+                        this.router.navigate(['home']);
+                        this.storage.removeItem('user');
                     }
                 }
                 return Observable.throw(response);
             });
-
     }
 }

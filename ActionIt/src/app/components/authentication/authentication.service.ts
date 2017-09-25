@@ -18,10 +18,10 @@ export class AuthenticationService implements CanActivate {
 
 
   constructor(private _http: HttpClient,
-    @Inject(AppConfig) config: ProjectConfig,
-    private router: Router,
-    private storage: LocalStorageService) {
-    this.url = config.authenticateUrl;
+          @Inject(AppConfig) config: ProjectConfig,
+          private router: Router,
+          private storage: LocalStorageService) {
+    this.url = `${config.rootUrl}${config.authenticateUrl}`;
     this.logoutUrl = config.logoutUrl;
   }
 

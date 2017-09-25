@@ -14,11 +14,11 @@ export class ProjectService {
     private url: string;
 
     constructor(private _http: HttpClient, @Inject(AppConfig) config: ProjectConfig) {
-        this.url = config.rootResourceUrl + config.projectsUrl;
+        this.url = `${config.rootResourceUrl}${config.projectsUrl}`;
     }
 
     public getProjects(): Observable<IProject[]> {
-        return this._http.get<IProject[]>(this.url)
+        return this._http.get<IProject[]>(this.url, { withCredentials: true })
             .map((resp: IProject[]) => _.map(resp, (item) => new Project(item)))
             .do((data) => console.log('ALL: ' + JSON.stringify(data)))
             .catch(this.handleError);

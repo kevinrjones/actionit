@@ -12,6 +12,9 @@ import org.springframework.http.HttpStatus
 import javax.sql.DataSource
 import org.springframework.context.annotation.Primary
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 
 @Configuration
@@ -70,4 +73,14 @@ class MvcConfiguration {
         return LogFactory.getLog("com.rsk")
     }
 
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurerAdapter() {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/user/**")
+                        .allowedMethods("GET","POST", "PUT", "DELETE")
+                        .allowedOrigins("http://localhost:4200")
+            }
+        }
+    }
 }

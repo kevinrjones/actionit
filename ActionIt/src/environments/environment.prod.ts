@@ -4,5 +4,7 @@ export const environment = {
   todosUrl: 'api/todos',
   authenticateUrl: 'user',
   logoutUrl: 'logout',
-  rootResourceUrl: 'http://localhost:8081/'
+  initializeUrl: 'initialize',
+  rootResourceUrl: 'http://localhost:8081/',
+  rootUrl: 'http://localhost:8080/'
 };

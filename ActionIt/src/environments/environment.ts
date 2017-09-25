@@ -5,9 +5,11 @@
 
 export const environment = {
   production: false,
-  projectsUrl: 'api/todos/projects.json',
-  todosUrl: 'api/todos/todos.json',
-  authenticateUrl: 'api/authenticate/authenticate.json',
+  projectsUrl: 'api/projects',
+  todosUrl: 'api/todos',
+  authenticateUrl: 'user',
   logoutUrl: 'logout',
-  rootResourceUrl: ''
+  initializeUrl: 'initialize',
+  rootResourceUrl: 'http://localhost:8081/',
+  rootUrl: 'http://localhost:8080/'
 };

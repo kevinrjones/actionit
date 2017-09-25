@@ -17,8 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 
-
-
 @Configuration
 class MvcConfiguration {
 
@@ -43,7 +41,7 @@ class MvcConfiguration {
     @Profile("dev")
     @ConfigurationProperties("spring.datasource")
     fun devDataSource(): DataSource {
-        val ds =  devDataSourceProperties().initializeDataSourceBuilder().build()
+        val ds = devDataSourceProperties().initializeDataSourceBuilder().build()
         return ds
     }
 
@@ -58,8 +56,15 @@ class MvcConfiguration {
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurerAdapter() {
             override fun addCorsMappings(registry: CorsRegistry) {
-                registry.addMapping("/api/**")
+                registry.addMapping("/api/*")
                         .allowedOrigins("http://localhost:8080")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
+                        "Access-Control-Request-Headers", "Access-Control-Allow-Origin")
+
+                registry.addMapping("/api/**")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedOrigins("http://localhost:4200")
             }
         }
     }

@@ -17,20 +17,20 @@ export class ToDoService {
     private url: string;
 
     constructor(private _http: HttpClient, @Inject(AppConfig) config: ProjectConfig) {
-        this.url = config.todosUrl;
+        this.url = `${config.rootResourceUrl}${config.todosUrl}`;
     }
 
     public getCurrentToDos(): Observable<IToDo[]> {
-        return this._http.get<IToDo[]>(this.url)
+        return this._http.get<IToDo[]>(this.url, { withCredentials: true })
             .map((resp: IToDo[]) => _.map(resp, (item) => new ToDo(item)))
             .do((data) => console.log('ALL: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-        addTodo(title: string) : Observable<any> {
+        addTodo(title: string): Observable<any> {
         return this._http.post(this.url, {
-            "title": title
-        })
+            'title': title
+        });
     }
 
     public handleError(error: HttpErrorResponse) {

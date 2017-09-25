@@ -9,5 +9,7 @@ export const PROJECT_CONFIG: ProjectConfig = {
     todosUrl: environment.todosUrl,
     authenticateUrl: environment.authenticateUrl,
     logoutUrl: environment.logoutUrl,
-    rootResourceUrl: environment.rootResourceUrl
+    initializeUrl: environment.initializeUrl,
+    rootResourceUrl: environment.rootResourceUrl,
+    rootUrl: environment.rootUrl
 };

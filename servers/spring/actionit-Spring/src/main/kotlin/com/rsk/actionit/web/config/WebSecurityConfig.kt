@@ -30,6 +30,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                         , "/**.woff2"
                         , "/**.map"
                         , "/"
+                        , "/initialize"
                         , "/app"
                         , "/home"
                         , "/user"
