@@ -18,11 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
         return next
             .handle(req)
-            // .do(response => {
-            //     if (response instanceof HttpResponse) {
-            //         // process response
-            //     }
-            // })
             .catch(response => {
                 if (response instanceof HttpErrorResponse) {
                     if (response.status === 401) {
