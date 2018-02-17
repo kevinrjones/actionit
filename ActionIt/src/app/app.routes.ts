@@ -8,7 +8,8 @@ export const ROUTES: Routes = [
     {
         path: 'app',
         component: MainComponent,
-        canActivate: [AuthenticationService],
+        //todo: re-add this
+        //canActivate: [AuthenticationService],
         children: [
             {
                 path: '',

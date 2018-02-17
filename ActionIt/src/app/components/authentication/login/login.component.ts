@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../';
+import { AuthenticationService } from '../authentication.service';
 import { NgForm } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 

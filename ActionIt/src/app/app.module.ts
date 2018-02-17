@@ -23,6 +23,7 @@ import { NavigationModule } from './components/navigation/navigation.module';
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { TodoModule } from './components/todos/todos.module';
 import { EqualsValidator } from './shared/validators/equalsValidator'
+import { InitializationService } from './components/main/initialization.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { EqualsValidator } from './shared/validators/equalsValidator'
     TodoModule
   ],
   providers: [
+    InitializationService,
     {
       provide: AppConfig,
       useValue: PROJECT_CONFIG

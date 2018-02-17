@@ -1,7 +1,7 @@
 
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../';
+import { AuthenticationService } from '../authentication.service';
 import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms/';
 import { Registration } from './registration';
 

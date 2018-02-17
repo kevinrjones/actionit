@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToDoService } from '../index';
+import { ToDoService } from '../todos.service';
 
 @Component({
     selector: 'ngbd-modal-content',
