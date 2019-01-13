@@ -5,6 +5,6 @@ export const environment = {
   authenticateUrl: 'user',
   logoutUrl: 'logout',
   initializeUrl: 'initialize',
-  rootResourceUrl: 'http://localhost:8081/',
-  rootUrl: 'http://localhost:8080/'
+  rootResourceUrl: 'http://localhost:9000/',
+  rootUrl: 'http://localhost:9000/'
 };

@@ -1,11 +1,11 @@
 
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/do';
+import { throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/do';
+import { Observable } from 'rxjs/Observable';
 import { LocalStorageService } from '../storage.service';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         this.storage.removeItem('user');
                     }
                 }
-                return Observable.throw(response);
+                return throwError(response);
             });
     }
 }

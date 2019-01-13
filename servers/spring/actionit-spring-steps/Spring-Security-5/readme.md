@@ -12,6 +12,6 @@ The angular 2 app also does basic validation around the security, the login form
 
 Logout now works.
 
-Loging and registration forms do no enable 'submit' unless the form is valid.
+Login and registration forms do no enable 'submit' unless the form is valid.
 
 Spring app also validates user registration

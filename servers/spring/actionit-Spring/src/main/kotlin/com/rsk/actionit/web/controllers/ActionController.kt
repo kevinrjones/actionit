@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value = "/actions")
+@RequestMapping(value = ["/actions"])
 class ActionController {
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/{name}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = ["/{name}"], produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun createAction(@PathVariable name: String) : Action {
         return Action(name)
     }

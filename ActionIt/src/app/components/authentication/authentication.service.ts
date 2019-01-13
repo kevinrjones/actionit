@@ -1,12 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { throwError } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { User } from '../../models/';
+import { LocalStorageService } from '../../shared';
 import { ProjectConfig } from '../../shared/projectConfig';
 import { AppConfig } from '../../shared/projectConfigDef';
-import { User } from '../../models/';
-import { HttpHeaders } from '@angular/common/http';
-import { LocalStorageService } from '../../shared';
 
 
 @Injectable()
@@ -41,6 +41,7 @@ export class AuthenticationService implements CanActivate {
         this.user = user;
         this.storage.setItem('user', JSON.stringify(this.user));
         console.log('stored user: ' + this.storage.getItem('user'));
+        return user;
       })
       .catch(this.handleError);
   }
@@ -64,6 +65,7 @@ export class AuthenticationService implements CanActivate {
         this.user = user;
         this.storage.setItem('user', JSON.stringify(this.user));
         console.log('stored user: ' + this.storage.getItem('user'));
+        return user;
       })
       .catch(this.handleError);
   }
@@ -85,7 +87,7 @@ export class AuthenticationService implements CanActivate {
     //   this.user = new User();
     //   return Observable.of(this.user);
     // }
-    return Observable.throw(error || 'Server error');
+    return throwError(error || 'Server error');
   }
 
   private isAuthenticated(): boolean {

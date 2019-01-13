@@ -1,8 +1,8 @@
-import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../authentication.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -28,7 +28,7 @@ export class LoginComponent  implements OnInit, OnDestroy {
   }
 
   constructor(public activeModal: NgbActiveModal, private authenticationService: AuthenticationService,
-    public toastr: ToastsManager) {
+    public toastr: ToastrService) {
   }
 
   public login(loginForm: NgForm) {

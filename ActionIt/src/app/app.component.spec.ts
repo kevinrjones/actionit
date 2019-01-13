@@ -1,21 +1,21 @@
-import { TestBed, async } from '@angular/core/testing';
-
-import { AppComponent } from './app.component';
-
+import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
-import { MainComponent } from './components/main/main.component';
-import { TodosComponent } from './components/todos/todos.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavigationComponent, TimeItemComponent, NavigationProjectItemComponent } from './components/navigation/index';
+import { MainComponent } from './components/main/main.component';
+import { NavigationComponent, NavigationProjectItemComponent, TimeItemComponent } from './components/navigation/index';
 import { TodoComponent } from './components/todos/index';
-import { ToastModule } from 'ng2-toastr';
+import { TodosComponent } from './components/todos/todos.component';
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(ROUTES),
-        ToastModule.forRoot()],
+      ToastrModule.forRoot()],
       declarations: [
         AppComponent,
         MainComponent,

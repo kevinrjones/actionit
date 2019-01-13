@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = ["/api/user"])
 class UserController(var userService: ActionItUserService, var log: Log) {
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = [""], produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun user(principal: Principal?): User {
         if(principal == null) {
             return User(0, "", "", false)
@@ -31,7 +31,7 @@ class UserController(var userService: ActionItUserService, var log: Log) {
     }
 
     @RequestMapping(method = arrayOf(RequestMethod.POST),
-            value = "",
+            value = [""],
             produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
             consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun createUser(@RequestBody user: RegistrationUser):  ResponseEntity<User> {

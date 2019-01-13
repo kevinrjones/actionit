@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IProject } from '../../../shared/project';
 import { ProjectService } from '../../../shared/project.service';
-import { IProject } from '../../../shared/Project';
 
 @Component({
     selector: 'aiNavigation',

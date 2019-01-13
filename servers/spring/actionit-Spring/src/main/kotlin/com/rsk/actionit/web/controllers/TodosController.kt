@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value = "/api/todos")
+@RequestMapping(value = ["/api/todos"])
 class TodosController {
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = "", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = [""], produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun todos() : List<Todo> {
         return listOf(
                 Todo(1, "ActionIt", "20170219", 1, 1),
@@ -21,7 +21,7 @@ class TodosController {
         )
     }
 
-    @RequestMapping(method = arrayOf(RequestMethod.POST), value = "")
+    @RequestMapping(method = arrayOf(RequestMethod.POST), value = [""])
     fun addTodo(title: String)  {
         println(title)
     }

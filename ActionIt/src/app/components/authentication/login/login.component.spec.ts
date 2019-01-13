@@ -1,22 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../authentication.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AppConfig } from '../../../shared/projectConfigDef';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 import { ROUTES } from '../../../app.routes';
-import { MainComponent } from '../../main/main.component';
-import { TodosComponent } from '../../todos/todos.component';
-import { HomeComponent } from '../../home/home.component';
-import { NavigationComponent, TimeItemComponent, NavigationProjectItemComponent } from '../../navigation/index';
-import { TodoComponent } from '../../todos/index';
+import { AppConfig } from '../../../shared/projectConfigDef';
 import { LocalStorageService } from '../../../shared/storage.service';
-import { LoginComponent } from './login.component';
+import { HomeComponent } from '../../home/home.component';
+import { MainComponent } from '../../main/main.component';
+import { NavigationComponent, NavigationProjectItemComponent, TimeItemComponent } from '../../navigation/index';
+import { TodoComponent } from '../../todos/index';
+import { TodosComponent } from '../../todos/todos.component';
+import { AuthenticationService } from '../authentication.service';
 import { RegisterComponent } from '../index';
-import { ToastModule } from 'ng2-toastr';
+import { LoginComponent } from './login.component';
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -41,7 +40,7 @@ describe('LoginComponent', () => {
           ReactiveFormsModule,
           NgbModule.forRoot(),
           HttpClientTestingModule,
-          ToastModule.forRoot()
+          ToastrModule.forRoot()
         ],
         providers: [
           {

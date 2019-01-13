@@ -2,30 +2,32 @@ package com.rsk.actionit.web.config
 
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
-import org.apache.log4j.spi.LoggerFactory
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.web.servlet.ErrorPage
-import org.springframework.context.annotation.*
-import org.springframework.http.HttpStatus
-import javax.sql.DataSource
-import org.springframework.context.annotation.Primary
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.web.server.ErrorPage
+import org.springframework.boot.web.server.WebServerFactoryCustomizer
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
+import org.springframework.context.annotation.Profile
+import org.springframework.http.HttpStatus
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import javax.sql.DataSource
 
 
 @Configuration
 class MvcConfiguration {
     @Bean
-    fun notFoundCustomizer(): EmbeddedServletContainerCustomizer {
+    fun notFoundCustomizer(): WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
         return NotFoundIndexTemplate()
     }
 
-    private class NotFoundIndexTemplate : EmbeddedServletContainerCustomizer {
-        override fun customize(container: ConfigurableEmbeddedServletContainer) {
+    private class NotFoundIndexTemplate : WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
+        override fun customize(container: ConfigurableServletWebServerFactory) {
             container.addErrorPages(ErrorPage(HttpStatus.NOT_FOUND, "/"))
         }
     }

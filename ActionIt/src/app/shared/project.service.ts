@@ -1,13 +1,14 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+import { Inject, Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import * as _ from 'underscore';
+import { IProject, Project } from './project';
 import { ProjectConfig } from './projectConfig';
 import { AppConfig } from './projectConfigDef';
-import { IProject, Project } from './Project';
 
 @Injectable()
 export class ProjectService {
@@ -26,6 +27,6 @@ export class ProjectService {
 
     public handleError(error: HttpErrorResponse) {
         console.error(error);
-        return Observable.throw(error || 'Server error');
+        return throwError(error || 'Server error');
     }
 }

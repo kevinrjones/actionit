@@ -1,15 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+import { Inject, Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import * as _ from 'underscore';
-
-import { ToDo, IToDo } from './todo/todo';
-import { AppConfig } from '../../shared/projectConfigDef';
 import { ProjectConfig } from '../../shared/projectConfig';
-import { IProject, Project } from '../../shared/Project';
+import { AppConfig } from '../../shared/projectConfigDef';
+import { IToDo, ToDo } from './todo/todo';
+
 
 @Injectable()
 export class ToDoService {
@@ -35,6 +35,6 @@ export class ToDoService {
 
     public handleError(error: HttpErrorResponse) {
         // console.error(error);
-        return Observable.throw(error || 'Server error');
+        return throwError(error || 'Server error');
     }
 }

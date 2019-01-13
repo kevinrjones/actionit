@@ -33,7 +33,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                         , "/initialize"
                         , "/app"
                         , "/home"
-                        , "/user"
+                        , "/api/user"
                         , "/index.html"
                 ).permitAll()
                 .anyRequest().authenticated()
