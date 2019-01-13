@@ -10,5 +10,5 @@
 
 ## To run
 1. Build the Angular app
-1. Copy the `ActionIt/dist` folder to `main\resources\static`
+1. Copy the `ActionIt/dist` folder to `main/resources/static`
 1. Start the Spring servers - this should serve index.html which serves the Angular app and also sets up the `api` endpoints
